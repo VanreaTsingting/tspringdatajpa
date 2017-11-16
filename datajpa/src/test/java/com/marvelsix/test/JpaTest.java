@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Date;
+
 /**
  * 【MarvelSix x17 intellij】
  * Author: 小小文
@@ -36,12 +38,21 @@ public class JpaTest {
 
     @Test
     public void test(){
-        MyUser myUser = myUserRepository.findBySsaTag("x17");
-        System.out.println(myUser.toString());
-        myUser = myUserRepository.findBySsaTag("x21");
-        System.out.println(myUser.toString());
-        myUser = myUserRepository.findBySsaTag("x11");
-        System.out.println(myUser==null?"null":myUser.toString());
+
+        for (int i = 0; i < 5; i++) {
+            MyUser myUser = new MyUser();
+            myUser.setSsaTag("x-0"+i);
+            myUser.setSsaName("大毛："+i);
+            myUser.setSsaDate(new Date());
+            myUserRepository.save(myUser);
+        }
+
+//        MyUser myUser = myUserRepository.findBySsaTag("x17");
+//        System.out.println(myUser.toString());
+//        myUser = myUserRepository.findBySsaTag("x21");
+//        System.out.println(myUser.toString());
+//        myUser = myUserRepository.findBySsaTag("x11");
+//        System.out.println(myUser==null?"null":myUser.toString());
 
     }
 
